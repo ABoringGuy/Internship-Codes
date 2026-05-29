@@ -1,0 +1,16 @@
+book_id,title,author,available_quantity,total_quantity
+BID0,Book1,Author1,1,30
+BID1,Book2,Author2,8,10
+BID2,Book3,Author3,0,1
+BID3,Book4,Author4,0,2
+BID4,BID0,MID0,9,10
+BID5,Testing,Not Unknown,96,98
+BID7,as,Unknown,14,16
+BID8,1,Unknown,9,10
+BID9,pokemon,Unknown,7,10
+BID10,hello,kitty,1,1
+BID11,sdgh,etgewrtg,10,10
+BID12,bhfegergh,erwer,204,204
+BID13,asffe,rthhsdfg,11,11
+BID14,BIDfsaf,erefd,100,100
+BID15,s,Unknown,10,10
