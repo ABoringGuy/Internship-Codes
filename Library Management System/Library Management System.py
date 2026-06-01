@@ -318,6 +318,9 @@ class System:
 
     def check_overdue_books_of_member(self):
         member_id=input("Enter Member ID: ")
+        if not member_id in self.members.records:
+            print("Member does not exist")
+            return
         found=False
         count=0
 
@@ -335,12 +338,21 @@ class System:
         print("Number of Overdue Books:",count)
 
     def get_all_members_with_overdue_books(self):
+        check=False
         for assignment in self.assignments.records.values():
             if not assignment.return_status and assignment.due_date < datetime.now():
                 book=self.books.get_record(assignment.book_id)
                 member=self.members.get_record(assignment.member_id)
                 print(f"""({assignment.id})Member ID:{member.id}, Name:{member.first_name} {member.last_name}, Book ID:{book.id}, Book Title:{book.title}""")
+                check=True
+        if not check:
+            print("No records found")
 
+    def check_if_book_taken_by_user(self, MID, BID):
+        for assignment in self.assignments.records.values():
+            if assignment.member_id == MID and assignment.book_id == BID and assignment.return_status==False:
+                return True
+        return False
 
     """
     ALL INSERTION OPERATIONS
@@ -401,6 +413,10 @@ class System:
             print("Member has overdue books. Cannot assign books before returning previous books")
             return
 
+        if self.check_if_book_taken_by_user(member_id, book_id):
+            print("Member already has this Book.")
+            return
+
         issue_date=self.date_operations("Enter Issue Date(YYYY/MM/DD): ")
         if not issue_date:
             issue_date=datetime.now()
@@ -425,6 +441,10 @@ class System:
     def update_assignment_status(self):
         assignment_id = input("Enter Assignment ID: ")
         assignment=self.assignments.get_record(assignment_id)
+        if not assignment:
+            print("Assignment doesn't exist")
+            return
+
         book= self.books.get_record(assignment.book_id)
 
         if not assignment.return_status:
@@ -432,6 +452,9 @@ class System:
             book.available_quantity+=1
             self.books.save_data()
             self.assignments.save_data()
+            print("Return status updated successfully!")
+            return
+        print("Book was already returned!")
 
     def update_issue_dates(self):
         assignment_id=input("Enter Assignment ID: ")
@@ -528,6 +551,7 @@ Choice=""")
         return active_assignments
 
     def search_assigned_members(self):
+        check=False
         assigned_member_id = set()
         for assignment in self.get_active_assignment():
             assigned_member_id.add(assignment.member_id)
@@ -535,15 +559,23 @@ Choice=""")
         for member in self.members.records.values():
             if member.id in assigned_member_id:
                 print(member)
+                check=True
+
+        if not check:
+            print("No records found")
 
     def search_not_assigned_members(self):
+        check=False
         assigned_members_id=set()#Created a Set because of fast search
         for assignment in self.get_active_assignment():
             assigned_members_id.add(assignment.member_id)
 
         for member in self.members.records.values():
             if member.id not in assigned_members_id:
+                check=True
                 print(member)
+        if not check:
+            print("No records found")
 
     def search_book(self):
         book_id = input("Enter Book ID to search: ")
@@ -573,15 +605,23 @@ Choice=""")
             print("Assignment doesn't exist")
 
     def get_assigned_books(self):
+        check=False
         for book in self.books.records.values():
             if book.available_quantity!=book.total_quantity:
                 print(book)
                 print("The total assigned book is:",book.assigned_quantity)
+                check=True
+        if not check:
+            print("No records found!")
 
     def get_unassigned_books(self):
+        check=False
         for book in self.books.records.values():
             if book.available_quantity==book.total_quantity:
                 print(book)
+                check=True
+        if not check:
+            print("No records found!")
 
     def get_all_books(self):
         self.books.display_all()
@@ -593,18 +633,34 @@ Choice=""")
         self.assignments.display_all()
 
     def get_all_books_member_has(self):
+        check=False
         member_id=input("Enter Member ID: ")
+        if not member_id in self.members.records:
+            print("Member doesn't exist")
+            return
+
         for assignment in self.assignments.records.values():
             if assignment.member_id==member_id and not assignment.return_status:
                 book = self.books.get_record(assignment.book_id)
                 print(book)
+                check=True
+        if not check:
+            print("No records found!")
 
     def get_all_members_who_has_book(self):
+        check=False
         book_id=input("Enter Book ID: ")
+        if not book_id in self.books.records:
+            print("Book doesn't exist")
+            return
+
         for assignment in self.assignments.records.values():
             if assignment.book_id==book_id and not assignment.return_status:
                 member=self.members.get_record(assignment.member_id)
                 print(member)
+                check=True
+        if not check:
+            print("No records found!")
 
 
     """
@@ -612,6 +668,10 @@ Choice=""")
     """
     def remove_book_by_id(self):
         book_id = input("Enter Book ID: ")
+        if not book_id in self.books.records:
+            print("Book doesn't exist")
+            return
+
         for assignment in self.assignments.records.values():
             if assignment.book_id == book_id and not assignment.return_status:
                 print("Cannot Delete Book")
@@ -621,6 +681,9 @@ Choice=""")
 
     def remove_member_by_id(self):
         member_id = input("Enter Member ID: ")
+        if not member_id in self.members.records:
+            print("Member doesn't exist")
+            return
         for assignment in self.assignments.records.values():
             if assignment.member_id == member_id and not assignment.return_status:
                 print("Cannot Delete Member")
@@ -755,8 +818,8 @@ Choice=""")
             [6] View All Overdue Books of Members
             [7] View All Members with Overdue Books
             
-            [7] Return to Main Menu
-            [8] Exit
+            [8] Return to Main Menu
+            [9] Exit
             
             Enter your choice:""")
 
