@@ -66,6 +66,8 @@
 
 ---
 ## Week 3
+- Learned about Iterators and Generators alongside yeild and next() functions.
+  
 - Learned the concept, use and implementation of Asynchronous Programming
   - Use of Async Functions(routines)
   - Use of Multithreading and Multiprocessing
