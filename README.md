@@ -20,13 +20,13 @@
   - Abstraction
   - Encapsulation
   - Polymorphism
+
+- Learned the use and implementation of Abstract Base Class and Abstract Functions
   
 - Used all the above knowledge to make a simple Banking System
 
 ---
 ## Week-2:
-- Learned Basics of File-Handling with .json file
-
 - Learned Basics of FIle-Handling with .csv file
 
 - Learned the use and implementation of Exception Handling
