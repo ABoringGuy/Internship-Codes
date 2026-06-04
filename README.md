@@ -22,6 +22,8 @@
   - Polymorphism
 
 - Learned the use and implementation of Abstract Base Class and Abstract Functions
+
+- Learned when, why and how to use *args and **kwargs for unknown parameters.
   
 - Used all the above knowledge to make a simple Banking System
 
@@ -57,6 +59,8 @@
   - Ordered Dict
   - Default Dict
   - User Dict, User List and User String
+ 
+- Learned use of Decorators Functions
 
 - Learned how to Flatten a Nested Dictionary and Vice Versa
 
