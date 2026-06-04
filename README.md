@@ -72,3 +72,6 @@
 ---
 ## Week 4
 - Learned the use of API and implementation using FastAPI
+- Learned how to input data for FastAPI through Pydantic BaseModel
+- Learned the use and implementation of APIRouter in context of FastAPI
+- Learning the basics of Numpy
