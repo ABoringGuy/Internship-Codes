@@ -1,7 +1,6 @@
 # Internship Progress Report:
 
 # Concepts Learned:
----
 ## Week-1:
 - Learned the representation of AST, how to view it and it's purpose.
 - Learned the use of Conditional Statements like:
