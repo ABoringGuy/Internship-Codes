@@ -81,3 +81,16 @@
 - Learned how to input data for FastAPI through Pydantic BaseModel
 - Learned the use and implementation of APIRouter in context of FastAPI
 - Learning the basics of Numpy
+
+---
+## Week 5
+- Revision of topics learned in previous weeks
+
+---
+## Week 6
+- Learned Basics of Pandas including:
+  - Creating Series/Dataframe
+  - Grouping and Indexing Data
+  - Locating Data
+  - Renaming Data
+  - Missing Data Handling
