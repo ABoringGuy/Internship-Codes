@@ -94,3 +94,4 @@
   - Locating Data
   - Renaming Data
   - Missing Data Handling
+  - Joining multiple DataFrames
