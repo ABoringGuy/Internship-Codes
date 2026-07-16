@@ -95,3 +95,7 @@
   - Renaming Data
   - Missing Data Handling
   - Joining multiple DataFrames
+
+---
+## Month 2
+- Made a Document Summarizer Tool(RAG Project)
